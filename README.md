@@ -26,16 +26,14 @@
 import * as gui from './gui-util.js';
 
 $(document).ready( function() {
-	const $box = gui.newCardBox()
-	const $card = gui.newCard()
-	const $cardHeader = gui.newCardHeader().text("Lenna")
-	const $cardBody = gui.newCardBody().append($('<img src="Lenna.png"></img>'))
-	
-	$card.append($cardHeader)
-	$card.append($cardBody)
-	$box.append($card)
-	$('#main').append($box)
-	
+
+	const $card_box = new gui.CardBox('main')
+	$card_box.addCard({
+            header: 'Lenna',
+            body: $('<img src="Lenna.png"></img>'),
+            footer: null
+        })
+
 	const $table = gui.drawTable('table',
         {
             head: ['#','First','Last','Handle'],
@@ -70,37 +68,24 @@ export function drawTable(id,data) {
     return $table
 }
 
-export function newCardBox() {
-	return $('<div class="d-flex m-1"></div>')	
-}
-
-export function newCard() {
-    return $('<div class="card text-center p-0 m-1"></div>')
-}
-
-export function newCardHeader(text) {
-	return $('<div class="card-header w-100"></div>')
-}
-
-export function newCardBody() {
-	return $('<div class="card-body" style="overflow: auto"></div>')
-}
-
-export function newCardFooter() {
-	return $('<div class="card-footer"></div>')
-}
-
-export function newCanvas(id) {
-	if (id) {
-		return $(`<canvas id="${id}"></canvas>`)
-	}
-	else {
-		return $('<canvas></canvas>')
-	}
-}
-
-export function newButton(text) {
-	return $(`<a href="#" class="btn btn-primary">${text}</a>`)
+export class CardBox {
+    constructor(id) {
+        this.box = $('<div class="d-flex m-1"></div>')
+        $(`#${id}`).append(this.box)
+    }
+    addCard(data) {
+        const card = $('<div class="card text-center p-0 m-1"></div>')
+        if (data.footer) {
+            card.append($('<div class="card-header w-100"></div>').append(data.header))
+        }
+        if (data.body) {
+            card.append($('<div class="card-body" style="overflow: auto"></div>').append(data.body))
+        }
+        if (data.footer) {
+            card.append($('<div class="card-footer"></div>').append(data.footer))
+        }
+        this.box.append(card)
+    }
 }
 ```
 

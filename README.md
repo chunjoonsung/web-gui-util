@@ -30,7 +30,11 @@ $(document).ready( function() {
 	const $card_box = new gui.CardBox('main')
 	$card_box.addCard({
             header: 'Lenna',
-            body: $('<img src="Lenna.png"></img>'),
+            body: $('<img src="Lenna.png" width=300 height=300></img>'),
+            footer: null
+        }).addCard({
+            header: 'Lenna',
+            body: $('<img src="Lenna.png" width=300 height=300></img>'),
             footer: null
         })
 
@@ -75,7 +79,7 @@ export class CardBox {
     }
     addCard(data) {
         const card = $('<div class="card text-center p-0 m-1"></div>')
-        if (data.footer) {
+        if (data.header) {
             card.append($('<div class="card-header w-100"></div>').append(data.header))
         }
         if (data.body) {
@@ -85,9 +89,11 @@ export class CardBox {
             card.append($('<div class="card-footer"></div>').append(data.footer))
         }
         this.box.append(card)
+        return this
     }
 }
 ```
 
-![image](https://github.com/chunjoonsung/web-gui-util/assets/33312464/7566e53f-bd2f-4acb-86e6-0d8e800b964c)
+![image](https://github.com/chunjoonsung/web-gui-util/assets/33312464/df484017-6849-4f22-8a45-cc820c75b2de)
+
 

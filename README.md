@@ -15,6 +15,7 @@
 </head>
 <body>
     <div id="main"></div>
+    <div id="table" class="m-4"></div>
 </body>
 </html>
 ```
@@ -34,14 +35,42 @@ $(document).ready( function() {
 	$card.append($cardBody)
 	$box.append($card)
 	$('#main').append($box)
+	
+	const $table = gui.drawTable('table',
+        {
+            head: ['#','First','Last','Handle'],
+            rows: [ ['1','Mark','Otto','@mdo'],
+                    ['2','Jacob','Thornton','@fat'],
+                    ['3','Larry','the Bird','@twitter'] ]
+        })
 });
 ```
 
 ## gui-util.js
 
 ```js
+export function drawTable(id,data) {
+    const $thtr = $('<tr></tr>')
+    const $tbody = $('<tbody></tbody>')
+    const $table = $('<table class="table table-striped table-bordered">')
+        .append($('<thead>"></thead>').append($thtr))
+        .append($tbody)
+    for (const col of data.head) {
+        const $th = $('<th class="header text-white bg-black"></th>').append(col)
+        $thtr.append($th)
+    }
+    for (const row of data.rows) {
+        const $tr = $('<tr></tr>')
+        $tbody.append($tr)
+        for (const col of row) {
+            $tr.append($('<td></td>').append(col))
+        }
+    }
+    $(`#${id}`).append($table)
+    return $table
+}
+
 export function newCardBox() {
-    console.log('newCardBox')
 	return $('<div class="d-flex m-1"></div>')	
 }
 
@@ -75,8 +104,5 @@ export function newButton(text) {
 }
 ```
 
+![image](https://github.com/chunjoonsung/web-gui-util/assets/33312464/7566e53f-bd2f-4acb-86e6-0d8e800b964c)
 
-
-
-
-![image](https://github.com/chunjoonsung/web-gui-util/assets/33312464/8c7bf3c4-e5b8-4f35-abd6-288ff9031be7)

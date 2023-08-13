@@ -11,5 +11,13 @@ $(document).ready( function() {
 	$card.append($cardBody)
 	$box.append($card)
 	$('#main').append($box)
+	
+	const $table = gui.drawTable('table',
+        {
+            head: ['#','First','Last','Handle'],
+            rows: [ ['1','Mark','Otto','@mdo'],
+                    ['2','Jacob','Thornton','@fat'],
+                    ['3','Larry','the Bird','@twitter'] ]
+        })
 });
 

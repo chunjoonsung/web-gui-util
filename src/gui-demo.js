@@ -6,7 +6,11 @@ $(document).ready( function() {
 	const $card_box = new gui.CardBox('main')
 	$card_box.addCard({
             header: 'Lenna',
-            body: $('<img src="Lenna.png"></img>'),
+            body: $('<img src="Lenna.png" width=300 height=300></img>'),
+            footer: null
+        }).addCard({
+            header: 'Lenna',
+            body: $('<img src="Lenna.png" width=300 height=300></img>'),
             footer: null
         })
 

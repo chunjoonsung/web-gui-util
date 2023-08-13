@@ -27,7 +27,7 @@ export class CardBox {
     }
     addCard(data) {
         const card = $('<div class="card text-center p-0 m-1"></div>')
-        if (data.footer) {
+        if (data.header) {
             card.append($('<div class="card-header w-100"></div>').append(data.header))
         }
         if (data.body) {
@@ -37,5 +37,6 @@ export class CardBox {
             card.append($('<div class="card-footer"></div>').append(data.footer))
         }
         this.box.append(card)
+        return this
     }
 }

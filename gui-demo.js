@@ -1,0 +1,29 @@
+
+import * as gui from './gui-util.js';
+
+$(document).ready( function() {
+
+    const $progress = new gui.ProgressBar('#progress')
+            .setWidth(200)
+            .setProgress(30)
+            
+	const $card_box = new gui.CardBox('#card')
+	$card_box.addCard({
+            header: 'Lenna',
+            body: $('<img src="Lenna.png" width=300 height=300></img>'),
+            footer: null
+        }).addCard({
+            header: 'Lenna',
+            body: $('<img src="Lenna.png" width=300 height=300></img>'),
+            footer: null
+        })
+
+	const $table = gui.drawTable('#table',
+        {
+            head: ['#','First','Last','Handle'],
+            rows: [ ['1','Mark','Otto','@mdo'],
+                    ['2','Jacob','Thornton','@fat'],
+                    ['3','Larry','the Bird','@twitter'] ]
+        })
+});
+

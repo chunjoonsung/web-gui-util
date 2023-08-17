@@ -45,9 +45,10 @@ export class ProgressBar {
     constructor(id) {
         this.$in = $('<div class="progress-bar" style="width: 0%"></div>')
         this.$out = $('<div class="progress m-4" role="progressbar"></div>').append(this.$in)
-        $(id).append(this.$out)
+        id && $(id).append(this.$out)
+        this.layout = this.$out
     }
-   setWidth(width) {
+    setWidth(width) {
         this.$out.css({width: `${width}`})
         return this    
     }
@@ -55,5 +56,33 @@ export class ProgressBar {
         this.$in.css({width: `${percent}%`})
         return this
     }
+    noAnimate() {
+        this.$in.css({transition: 'none'})
+        return this
+    }
 }
+
+export class Button {
+    constructor(label,action,id) {
+        this.$ctrl = $(`<a href="#" class="btn btn-primary">${label}</a>`)
+        action && this.$ctrl.on('click', action)
+        id && $(id).append(this.$ctrl)
+        this.layout = this.$ctrl
+    }
+}
+
+export class Spinner {
+    constructor() {
+        this.$ctrl = $('<div class="spinner-border" role="status"></div>')
+        this.$ctrl.css({display: "absoulte", top: "50%", left: "50%"})
+        this.layout = this.$ctrl
+    }
+    show() {
+        this.$ctrl.show()
+    }
+    hide() {
+        this.$ctrl.hide()
+    }
+}
+
 
